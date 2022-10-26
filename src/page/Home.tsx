@@ -3,7 +3,7 @@ import GroupByID from "../components/GroupByID"
 import NormalView from "../components/NormalView"
 
 const Home: React.FC = () => {
-  const [todos, setTodos] = useState<any>([])
+  const [todos, setTodos] = useState<any[]>([])
   const [viewType, setViewType] = useState<string>("normal")
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Home: React.FC = () => {
   }, [])
 
   // sorting function
-  const handleSort = (sortType: string) => {
+  const handleSort = (sortType: string): void => {
     if (todos) {
       if (sortType === "byId") {
         setTodos([...todos].sort((a: any, b: any) => a.id - b.id))

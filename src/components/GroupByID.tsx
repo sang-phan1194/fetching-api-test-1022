@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import { Props } from "./NormalView"
 
 /* function to group todo tasks by userID */
-const handleData = (todos: any) => {
-  const data: any[] = todos.reduce((acc: any, cur: any) => {
+const handleData = (todos: any[]): any[] => {
+  const data: any[] = todos.reduce((acc: any[], cur: any) => {
     if (!acc.some((x: any) => x === cur.userId)) {
       acc.push(cur.userId)
     }
@@ -13,11 +14,6 @@ const handleData = (todos: any) => {
     todos.filter((todo: any) => todo.userId === item)
   )
   return groupedTodos
-}
-
-// Props type declaration
-interface Props {
-  todos: []
 }
 
 const GroupByID: React.FC<Props> = ({ todos }: Props) => {

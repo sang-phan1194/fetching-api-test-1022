@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 
-// Props type declaration
-interface Props {
-  todos: []
-  handleSort: any
+// Props type
+export interface Props {
+  todos: any[]
+  handleSort?: (sortType: string) => void
 }
 
 const NormalView: React.FC<Props> = ({ todos, handleSort }: Props) => {
@@ -14,14 +14,26 @@ const NormalView: React.FC<Props> = ({ todos, handleSort }: Props) => {
           <tr>
             <th>
               ID
-              <button onClick={() => handleSort("byId")}>
+              <button
+                onClick={() => {
+                  if (handleSort) {
+                    handleSort("byId")
+                  }
+                }}
+              >
                 <i className="bi bi-sort-numeric-down"></i>
               </button>
             </th>
             <th>User ID</th>
             <th>
               Title
-              <button onClick={() => handleSort("byTitle")}>
+              <button
+                onClick={() => {
+                  if (handleSort) {
+                    handleSort("byTitle")
+                  }
+                }}
+              >
                 <i className="bi bi-sort-alpha-down"></i>
               </button>
             </th>
