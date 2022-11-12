@@ -1,23 +1,23 @@
-import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Props } from "./NormalView"
+import { myObj } from "../page/Home"
 
 /* function to group todo tasks by userID */
-const handleData = (todos: any[]): any[] => {
-  const data: any[] = todos.reduce((acc: any[], cur: any) => {
-    if (!acc.some((x: any) => x === cur.userId)) {
+const handleData = (todos: myObj[]): myObj[][] => {
+  const data: number[] = todos.reduce((acc: number[], cur: myObj) => {
+    if (!acc.some((x: number) => x === cur.userId)) {
       acc.push(cur.userId)
     }
     return acc
   }, [])
-  const groupedTodos: any[] = data.map((item: any) =>
-    todos.filter((todo: any) => todo.userId === item)
+  const groupedTodos: myObj[][] = data.map((item: number) =>
+    todos.filter((todo: myObj) => todo.userId === item)
   )
   return groupedTodos
 }
 
 const GroupByID: React.FC<Props> = ({ todos }: Props) => {
-  const groupedTodos = useState(handleData(todos))[0]
+  const groupedTodos = handleData(todos)
 
   return (
     <>
@@ -29,13 +29,13 @@ const GroupByID: React.FC<Props> = ({ todos }: Props) => {
           </tr>
         </thead>
         <tbody>
-          {groupedTodos?.map((todo: any) => (
+          {groupedTodos?.map((todo: myObj[]) => (
             <tr key={todo[0].userId}>
               <td>{todo[0].userId}</td>
               <td className="title">
                 {
                   <ul>
-                    {todo.map((item: any) => (
+                    {todo.map((item: myObj) => (
                       <li key={item.id}>
                         <i className="bi bi-arrow-right-short"></i>
                         <Link to={`/details/${item.id}`}>{item.title}</Link>

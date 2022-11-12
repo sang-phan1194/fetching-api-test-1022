@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom"
+import { myObj } from "../page/Home"
 
 // Props type
 export interface Props {
-  todos: any[]
+  todos: myObj[]
   handleSort?: (sortType: string) => void
 }
 
@@ -42,7 +43,7 @@ const NormalView: React.FC<Props> = ({ todos, handleSort }: Props) => {
         </thead>
         <tbody>
           {todos &&
-            todos?.map((todo: any) => (
+            todos?.map((todo: myObj) => (
               <tr key={todo.id}>
                 <td>{todo.id}</td>
                 <td>{todo.userId}</td>

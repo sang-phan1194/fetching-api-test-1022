@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
+import { myObj } from "./Home"
 
 const Detail: React.FC = () => {
   const { id } = useParams<string>()
-  const [todo, setTodo] = useState<any>()
+  const [todo, setTodo] = useState<myObj>()
 
   useEffect(() => {
     let isCancelled: Boolean = false

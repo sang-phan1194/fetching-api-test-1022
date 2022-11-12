@@ -2,8 +2,15 @@ import { useEffect, useState } from "react"
 import GroupByID from "../components/GroupByID"
 import NormalView from "../components/NormalView"
 
+export interface myObj {
+  userId: number
+  id: number
+  title: string
+  completed: boolean
+}
+
 const Home: React.FC = () => {
-  const [todos, setTodos] = useState<any[]>([])
+  const [todos, setTodos] = useState<myObj[]>([])
   const [viewType, setViewType] = useState<string>("normal")
 
   useEffect(() => {
@@ -25,11 +32,13 @@ const Home: React.FC = () => {
   const handleSort = (sortType: string): void => {
     if (todos) {
       if (sortType === "byId") {
-        setTodos([...todos].sort((a: any, b: any) => a.id - b.id))
+        setTodos([...todos].sort((a: myObj, b: myObj) => a.id - b.id))
       }
       if (sortType === "byTitle") {
         setTodos(
-          [...todos].sort((a: any, b: any) => a.title.localeCompare(b.title))
+          [...todos].sort((a: myObj, b: myObj) =>
+            a.title.localeCompare(b.title)
+          )
         )
       }
     }
